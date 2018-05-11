@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, BaseViewControllerProtocol {
     
     var presenter: BasePresenter? = nil
     
