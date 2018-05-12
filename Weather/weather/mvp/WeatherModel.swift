@@ -7,7 +7,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class WeatherModel: BaseModel {
-
+    
+    
+    func currentDataUsingSearch(string: String) -> Observable<BaseData> {
+        return getData(urlPath: "q=\(string)")
+    }
+    
 }

@@ -10,15 +10,23 @@ import UIKit
 
 class WeatherViewController: BaseViewController {
 
+    @IBOutlet weak var textField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        presenter().getCurrentData(search:textField.text ?? "Belgrade")
     }
 
     override func initPresenter() {
         presenter = WeatherPresenter(localView: self, localModel: WeatherModel(view: self))
     }
     
-
+    func presenter() -> WeatherPresenter {
+        return presenter as! WeatherPresenter
+    }
+    
+    @IBAction func search(_ sender: UIButton!) {
+        presenter().getCurrentData(search:textField.text ?? "Belgrade")
+    }
+    
 }

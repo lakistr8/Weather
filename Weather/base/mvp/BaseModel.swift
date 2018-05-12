@@ -20,12 +20,12 @@ class BaseModel {
         self.view = view
     }
     
-    func getData(params:Parameters, headers:HTTPHeaders, method:HTTPMethod, urlPath:String) -> Observable<BaseData> {
+    func getData(urlPath:String) -> Observable<BaseData> {
         var data: BaseData? = nil
         let fullUrl = URL(string: "\(baseURL)\(urlPath)&appid=\(self.appID)")
         
         return Observable<BaseData>.create({ observer in
-            Alamofire.request(fullUrl!, method: method, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON(completionHandler: { response in
+            Alamofire.request(fullUrl!).responseJSON(completionHandler: { response in
                 switch response.result {
                 case .success:
                     data = BaseData(data: response.data!)
